@@ -137,7 +137,7 @@ var handler = {
                             val.map(function (v) { return v; });
                             return 'array';
                         }
-                        catch (e) {
+                        catch (_Error) {
                             return typeof val;
                         }
                     case 6:
@@ -246,7 +246,7 @@ var handler = {
             /* also works - just seems dirty (and dangerous)
             try {
               return fn(val)
-            } catch (e) {
+            } catch (_Error) {
               return val
             }
             */
@@ -298,7 +298,7 @@ var handler = {
                             return [2 /*return*/, safeObj];
                         }
                     }
-                    catch (e) {
+                    catch (_Error) {
                         return [2 /*return*/, e];
                     }
                     return [2 /*return*/];

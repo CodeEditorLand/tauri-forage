@@ -75,7 +75,7 @@ export const handler = {
             try {
               val.map((v: any) => v)
               return 'array'
-            } catch (e) {
+            } catch (_Error) {
               return typeof val
             }
           case 6:
@@ -185,7 +185,7 @@ export const handler = {
       /* also works - just seems dirty (and dangerous)
       try {
         return fn(val)
-      } catch (e) {
+      } catch (_Error) {
         return val
       }
       */
@@ -231,7 +231,7 @@ export const handler = {
           }
           return safeObj
         }
-      } catch (e) {
+      } catch (_Error) {
         return e
       }
     }
