@@ -3,6 +3,9 @@
 	"version": "0.0.1",
 	"private": false,
 	"description": "enhanced localForage with curry and crypto - for any browser and device",
+	"keywords": [
+		"land"
+	],
 	"homepage": "HTTPS://GitHub.Com/CodeEditorLand/TauriForage#readme",
 	"bugs": {
 		"url": "HTTPS://GitHub.Com/CodeEditorLand/TauriForage/issues"
