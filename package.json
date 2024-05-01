@@ -1,11 +1,54 @@
 {
-	"author": {
-		"email": "Land@PlayForm.Cloud",
-		"name": "🌆 — Land —",
-		"url": "HTTPS://Land.PlayForm.Cloud"
-	},
+	"name": "@tauri-apps/tauri-forage",
+	"version": "0.0.1",
+	"private": false,
+	"description": "enhanced localForage with curry and crypto - for any browser and device",
+	"keywords": [
+		"land"
+	],
+	"homepage": "HTTPS://GitHub.Com/CodeEditorLand/TauriForage#readme",
 	"bugs": {
 		"url": "HTTPS://GitHub.Com/CodeEditorLand/TauriForage/issues"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+HTTPS://github.com/CodeEditorLand/TauriForage.git"
+	},
+	"license": "SEE LICENSE IN LICENSE",
+	"author": {
+		"name": "🌆 — Land —",
+		"email": "Land@PlayForm.Cloud",
+		"url": "HTTPS://Land.PlayForm.Cloud"
+	},
+	"type": "module",
+	"main": "dist/index.cjs.min.js",
+	"module": "dist/index.esm.js",
+	"types": "dist/index.d.ts",
+	"directories": {
+		"test": "test",
+		"dist": "dist",
+		"src": "src"
+	},
+	"files": [
+		"dist"
+	],
+	"scripts": {
+		"Document": "Document 'Source/**/*.ts'",
+		"buildRollup": "rollup -c",
+		"buildWebpack": "webpack --progress",
+		"makeDocs": "jsdoc -c './jsdoc.json' -d docs && git add './docs/*'",
+		"prepublishOnly": "Build 'Source/**/*.ts'",
+		"test:jest": "jest --updateSnapshot",
+		"test:unit:coverage": "jest --coverage",
+		"test:unit:watch": "jest --watch",
+		"test:unit:watchAll": "jest --watchAll",
+		"transpile": "npx babel ./lib --out-dir ./dist && npx eslint ./dist/*.js ./dist/*.js --fix"
+	},
+	"lint-staged": {
+		"src/*.{js,vue}": [
+			"eslint --fix",
+			"git add"
+		]
 	},
 	"dependencies": {
 		"localforage": "^1.7.3",
@@ -13,7 +56,6 @@
 		"tweetnacl": "^1.0.1",
 		"tweetnacl-util": "^0.15.0"
 	},
-	"description": "enhanced localForage with curry and crypto - for any browser and device",
 	"devDependencies": {
 		"@playform/build": "0.0.7",
 		"@playform/document": "0.0.6",
@@ -29,49 +71,7 @@
 		"ts-loader": "^6.2.1",
 		"tslib": "^1.10.0"
 	},
-	"directories": {
-		"dist": "dist",
-		"src": "src",
-		"test": "test"
-	},
-	"files": [
-		"dist"
-	],
-	"homepage": "HTTPS://GitHub.Com/CodeEditorLand/TauriForage#readme",
-	"keywords": [
-		"land"
-	],
-	"license": "SEE LICENSE IN LICENSE",
-	"lint-staged": {
-		"src/*.{js,vue}": [
-			"eslint --fix",
-			"git add"
-		]
-	},
-	"main": "dist/index.cjs.min.js",
-	"module": "dist/index.esm.js",
-	"name": "@tauri-apps/tauri-forage",
-	"private": false,
 	"publishConfig": {
 		"access": "public"
-	},
-	"repository": {
-		"type": "git",
-		"url": "git+HTTPS://github.com/CodeEditorLand/TauriForage.git"
-	},
-	"scripts": {
-		"Document": "Document 'Source/**/*.ts'",
-		"buildRollup": "rollup -c",
-		"buildWebpack": "webpack --progress",
-		"makeDocs": "jsdoc -c './jsdoc.json' -d docs && git add './docs/*'",
-		"prepublishOnly": "Build 'Source/**/*.ts'",
-		"test:jest": "jest --updateSnapshot",
-		"test:unit:coverage": "jest --coverage",
-		"test:unit:watch": "jest --watch",
-		"test:unit:watchAll": "jest --watchAll",
-		"transpile": "npx babel ./lib --out-dir ./dist && npx eslint ./dist/*.js ./dist/*.js --fix"
-	},
-	"type": "module",
-	"types": "dist/index.d.ts",
-	"version": "0.0.1"
+	}
 }
