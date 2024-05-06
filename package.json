@@ -59,11 +59,11 @@
 	"devDependencies": {
 		"@playform/build": "0.0.7",
 		"@playform/document": "0.0.6",
-		"@types/ramda": "0.29.12",
+		"@types/ramda": "0.30.0",
 		"better-docs": "2.7.3",
 		"dom-storage": "2.1.0",
 		"dotenv": "16.4.5",
-		"jsdoc": "4.0.2",
+		"jsdoc": "4.0.3",
 		"jsdoc-mermaid": "1.0.0",
 		"lint-staged": "15.2.2",
 		"postinstall-postinstall": "2.1.0",
