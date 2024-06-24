@@ -29,22 +29,22 @@
 		]
 	},
 	"dependencies": {
-		"localforage": "^1.7.3",
-		"ramda": "^0.26.1",
-		"tweetnacl": "^1.0.1",
-		"tweetnacl-util": "^0.15.0"
+		"localforage": "^1.10.0",
+		"ramda": "^0.30.1",
+		"tweetnacl": "^1.0.3",
+		"tweetnacl-util": "^0.15.1"
 	},
 	"devDependencies": {
-		"@types/ramda": "^0.26.39",
-		"better-docs": "^1.4.7",
+		"@types/ramda": "^0.30.0",
+		"better-docs": "^2.7.3",
 		"dom-storage": "^2.1.0",
-		"dotenv": "8.2.0",
-		"jsdoc": "^3.6.3",
+		"dotenv": "16.4.5",
+		"jsdoc": "^4.0.3",
 		"jsdoc-mermaid": "^1.0.0",
-		"lint-staged": "^9.4.2",
-		"postinstall-postinstall": "^2.0.0",
-		"promise": "^8.0.2",
-		"ts-loader": "^6.2.1",
-		"tslib": "^1.10.0"
+		"lint-staged": "^15.2.7",
+		"postinstall-postinstall": "^2.1.0",
+		"promise": "^8.3.0",
+		"ts-loader": "^9.5.1",
+		"tslib": "^2.6.3"
 	}
 }
