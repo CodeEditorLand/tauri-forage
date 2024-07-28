@@ -1,39 +1,11 @@
 {
-	"name": "@tauri-apps/tauri-forage",
-	"description": "enhanced localForage with curry and crypto - for any browser and device",
-	"main": "dist/index.cjs.min.js",
-	"module": "dist/index.esm.js",
-	"types": "dist/index.d.ts",
-	"directories": {
-		"test": "test",
-		"dist": "dist",
-		"src": "src"
-	},
-	"files": [
-		"dist"
-	],
-	"scripts": {
-		"buildRollup": "rollup -c",
-		"buildWebpack": "webpack --progress",
-		"makeDocs": "jsdoc -c './jsdoc.json' -d docs && git add './docs/*'",
-		"test:jest": "jest --updateSnapshot",
-		"test:unit:coverage": "jest --coverage",
-		"test:unit:watch": "jest --watch",
-		"test:unit:watchAll": "jest --watchAll",
-		"transpile": "npx babel ./lib --out-dir ./dist && npx eslint ./dist/*.js ./dist/*.js --fix"
-	},
-	"lint-staged": {
-		"src/*.{js,vue}": [
-			"eslint --fix",
-			"git add"
-		]
-	},
 	"dependencies": {
 		"localforage": "1.7.3",
 		"ramda": "0.26.1",
 		"tweetnacl": "1.0.1",
 		"tweetnacl-util": "0.15.0"
 	},
+	"description": "enhanced localForage with curry and crypto - for any browser and device",
 	"devDependencies": {
 		"@types/ramda": "0.26.39",
 		"better-docs": "1.4.7",
@@ -46,5 +18,33 @@
 		"promise": "8.0.2",
 		"ts-loader": "6.2.1",
 		"tslib": "1.10.0"
-	}
+	},
+	"directories": {
+		"dist": "dist",
+		"src": "src",
+		"test": "test"
+	},
+	"files": [
+		"dist"
+	],
+	"lint-staged": {
+		"src/*.{js,vue}": [
+			"eslint --fix",
+			"git add"
+		]
+	},
+	"main": "dist/index.cjs.min.js",
+	"module": "dist/index.esm.js",
+	"name": "@tauri-apps/tauri-forage",
+	"scripts": {
+		"buildRollup": "rollup -c",
+		"buildWebpack": "webpack --progress",
+		"makeDocs": "jsdoc -c './jsdoc.json' -d docs && git add './docs/*'",
+		"test:jest": "jest --updateSnapshot",
+		"test:unit:coverage": "jest --coverage",
+		"test:unit:watch": "jest --watch",
+		"test:unit:watchAll": "jest --watchAll",
+		"transpile": "npx babel ./lib --out-dir ./dist && npx eslint ./dist/*.js ./dist/*.js --fix"
+	},
+	"types": "dist/index.d.ts"
 }
