@@ -15,7 +15,7 @@ docs - because that is the underlying engine that this library uses. But for a
 refresher, localForage uses IndexedDB, WebSQL, or localStorage - depending on
 the best engine that the browser offers.
 
-## Installation
+## 🚀 Installation
 
 Install with your package manager
 
