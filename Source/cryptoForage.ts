@@ -6,6 +6,7 @@ import { Purifiable } from "./types";
 export interface Enbox {
 	key?: string;
 	loggerType?: LoggerType;
+
 	returnType?: ReturnerType;
 }
 
@@ -97,6 +98,7 @@ const cryptoForage = {
 					}),
 				/* istanbul ignore */
 			)(returnType);
+
 			if (model && typeof model === "object") {
 				return handler.jsonPurify({
 					model: model,

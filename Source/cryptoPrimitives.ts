@@ -86,6 +86,7 @@ const crypto = {
 		 */
 		keyGen(input: MaybeUint8Array): string {
 			input = input || randomBytes(secretbox.keyLength);
+
 			return encodeBase64(input);
 		},
 		/**
@@ -103,6 +104,7 @@ const crypto = {
 				throw new Error("[CryptoPrimitive] - missing key");
 			}
 			let keyUint8Array;
+
 			try {
 				keyUint8Array = decodeBase64(key);
 			} catch (err) {
@@ -111,7 +113,9 @@ const crypto = {
 			// console.log(typeof keyUint8Array)
 
 			const nonce = crypto.nonce();
+
 			const messageUint8 = decodeUTF8(JSON.stringify(json));
+
 			const box = secretbox(messageUint8, nonce, keyUint8Array);
 
 			const fullMessage = new Uint8Array(nonce.length + box.length);
@@ -119,6 +123,7 @@ const crypto = {
 			fullMessage.set(box, nonce.length);
 
 			const base64FullMessage = encodeBase64(fullMessage);
+
 			return base64FullMessage;
 		},
 		/*
@@ -150,15 +155,19 @@ const crypto = {
 		 */
 		decrypt: async function ({ msg, key }: Decryptable = {}) {
 			const keyUint8Array = decodeBase64(key);
+
 			const messageWithNonceAsUint8Array = decodeBase64(msg);
+
 			const nonce = messageWithNonceAsUint8Array.slice(
 				0,
 				secretbox.nonceLength,
 			);
+
 			const message = messageWithNonceAsUint8Array.slice(
 				secretbox.nonceLength,
 				msg.length,
 			);
+
 			const decrypted = secretbox.open(message, nonce, keyUint8Array);
 
 			if (!decrypted) {
@@ -213,7 +222,9 @@ const crypto = {
 		 */
 		encrypt({ secretOrSharedKey, json, key }: EncryptableBox) {
 			const nonce = this.crypto.nacl.nonce();
+
 			const messageUint8 = decodeUTF8(JSON.stringify(json));
+
 			const encrypted = key
 				? box(messageUint8, nonce, key, secretOrSharedKey)
 				: box.after(messageUint8, nonce, secretOrSharedKey);
@@ -223,6 +234,7 @@ const crypto = {
 			fullMessage.set(encrypted, nonce.length);
 
 			const base64FullMessage = encodeBase64(fullMessage);
+
 			return base64FullMessage;
 		},
 		/**
@@ -238,10 +250,12 @@ const crypto = {
 		 */
 		decrypt({ secretOrSharedKey, messageWithNonce, key }: DecryptableBox) {
 			const messageWithNonceAsUint8Array = decodeBase64(messageWithNonce);
+
 			const nonce = messageWithNonceAsUint8Array.slice(
 				0,
 				box.nonceLength,
 			);
+
 			const message = messageWithNonceAsUint8Array.slice(
 				box.nonceLength,
 				messageWithNonce.length,
@@ -256,6 +270,7 @@ const crypto = {
 			}
 
 			const base64DecryptedMessage = encodeUTF8(decrypted);
+
 			return JSON.parse(base64DecryptedMessage);
 		},
 	},

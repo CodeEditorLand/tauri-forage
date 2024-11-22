@@ -17,6 +17,7 @@ export type Store = {};
 export interface Item {
 	key?: string;
 	logger?: LoggerType;
+
 	returner?: ReturnerType;
 	store?: string;
 }
@@ -84,6 +85,7 @@ const forage = {
 		return async function (curry?: MaybeFunction) {
 			const storage = await _defineStore({ store: store });
 			key = before ? await handler.maybeCurry(curry || null)(key) : key;
+
 			return handler.returner(
 				storage
 					.getItem(key)
@@ -124,6 +126,7 @@ const forage = {
 			value = before
 				? await handler.maybeCurry(curry || null)(value)
 				: value;
+
 			return handler.returner(
 				storage
 					.getItem(key)
@@ -167,6 +170,7 @@ const forage = {
 			value = before
 				? await handler.maybeCurry(curry || null)(value)
 				: value;
+
 			return handler.returner(
 				storage
 					.setItem(key, value)
@@ -199,6 +203,7 @@ const forage = {
 			index = before
 				? await handler.maybeCurry(curry || null)(index)
 				: index;
+
 			return handler.returner(
 				storage
 					.key(index)
@@ -245,16 +250,19 @@ const forage = {
 	}: MergeItem = {}) {
 		const concatValues = (k: string, l: any, r: any) =>
 			k === "values" ? concat(l, r) : r;
+
 		return async function (curry?: MaybeFunction) {
 			const storage = _defineStore({ store: store });
 			value = before
 				? await handler.maybeCurry(curry || null)(value)
 				: value;
+
 			return handler.returner(
 				await storage
 					.getItem(key)
 					.then(async (v: any) => {
 						let val;
+
 						switch (type) {
 							case "custom":
 								try {
@@ -262,6 +270,7 @@ const forage = {
 										key,
 										await handler.maybeCurry(curry)(v),
 									);
+
 									return val;
 								} catch (err) {
 									/* istanbul ignore next */
@@ -273,6 +282,7 @@ const forage = {
 										key,
 										mergeRight(v, value as any),
 									);
+
 									return val;
 								} catch (err) {
 									/* istanbul ignore next */
@@ -284,6 +294,7 @@ const forage = {
 										key,
 										mergeDeepRight(v, value as any),
 									);
+
 									return val;
 								} catch (err) {
 									/* istanbul ignore next */
@@ -295,6 +306,7 @@ const forage = {
 										key,
 										mergeWith(concat, v, value),
 									);
+
 									return val;
 								} catch (err) {
 									/* istanbul ignore next */
@@ -331,6 +343,7 @@ const forage = {
 											value,
 										),
 									);
+
 									return val;
 								} catch (err) {
 									/* istanbul ignore next */
@@ -349,7 +362,9 @@ const forage = {
 	removeItem({ key, logger, returner, before, store }: BeforeItem = {}) {
 		return async function (curry?: MaybeFunction) {
 			key = before ? await handler.maybeCurry(curry || null)(key) : key;
+
 			const storage = await _defineStore({ store: store });
+
 			return handler.returner(
 				await storage
 					.removeItem(key)
@@ -370,6 +385,7 @@ const forage = {
 		...restArgs: any[]
 	) {
 		const args = _mapArgs(restArgs);
+
 		return localForage
 			.getItem(key)
 			.then((val: any) => {
@@ -399,6 +415,7 @@ const forage = {
 	}: { logger?: LoggerType; store?: string } = {}) {
 		return async function (curry?: MaybeFunction) {
 			const storage = await _defineStore({ store: store });
+
 			return storage
 				.clear()
 				.then(() => {
@@ -417,6 +434,7 @@ const forage = {
 	}: { logger?: LoggerType; returner?: ReturnerType; store?: string } = {}) {
 		return async function (curry?: MaybeFunction) {
 			const storage = await _defineStore({ store: store });
+
 			return handler.returner(
 				await storage
 					.length()
@@ -451,6 +469,7 @@ const forage = {
 	}: { logger?: LoggerType; returner?: ReturnerType; store?: any } = {}) {
 		return async function (curry: MaybeFunction) {
 			const storage = await _defineStore({ store: store });
+
 			return handler.returner(
 				await storage
 					.keys()
@@ -469,6 +488,7 @@ const forage = {
 		// must be a key
 		return async function (curry?: MaybeFunction) {
 			const storage = await _defineStore({ store: store });
+
 			return handler.returner(
 				await storage
 					.keys()
@@ -506,6 +526,7 @@ const forage = {
 		key?: string;
 		value?: string;
 		logger?: LoggerType;
+
 		returner?: ReturnerType;
 	} = {}) {
 		// boolean version of getKeyValue
@@ -633,6 +654,7 @@ const _mapArgs = function (arr: any[]) {
 	if (arr) {
 		const arrint = arr.map((val) => {
 			let type = typeof val;
+
 			switch (type) {
 				case "function":
 					return { curry: val }; // function to curry with
@@ -646,12 +668,14 @@ const _mapArgs = function (arr: any[]) {
 					return { curry: val };
 			}
 		});
+
 		return arrint;
 	} else return [];
 };
 
 const _defineStore = function ({ store }: { store?: string } = {}) {
 	if (!store) return localForage;
+
 	return forage.createInstance({
 		name: store,
 	});
@@ -659,19 +683,33 @@ const _defineStore = function ({ store }: { store?: string } = {}) {
 
 // we are exporting the internals for testing purposes
 const internals = { _mapArgs, _defineStore };
+
 const getItem = forage.getItem;
+
 const getKeyValue = forage.getKeyValue;
+
 const setItem = forage.setItem;
+
 const key = forage.key;
+
 const mergeItem = forage.mergeItem;
+
 const removeItem = forage.removeItem;
+
 const deleteItemKey = forage.removeItem;
+
 const clear = forage.clear;
+
 const length = forage.length;
+
 const keys = forage.keys;
+
 const hasKey = forage.hasKey;
+
 const hasKeyValue = forage.hasKeyValue;
+
 const ready = forage.ready;
+
 const defineStore = _defineStore;
 export {
 	forage,

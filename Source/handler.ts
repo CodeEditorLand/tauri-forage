@@ -45,21 +45,26 @@ export const handler = {
 				type = returnerType;
 			}
 			const t = typeof type;
+
 			if (t === "number" || t === "string") {
 				switch (type) {
 					case 1:
 					case "quiet": // be totally quiet
 						return void 0;
+
 					case 2:
 					case "console": // helpful for debugging
 						console.log(val);
+
 						break;
+
 					case 3:
 					case "break": // manual breakpoint
 						if (val instanceof Error) {
 							// if it already is an error no need to throw twice
 							// but if the message is empty, fill it.
 							val.message ? void 0 : (val.message = "No value");
+
 							throw val;
 						} else {
 							throw new Error(val || "No result");
@@ -69,13 +74,18 @@ export const handler = {
 						return val === null || val === void 0
 							? false
 							: val !== false;
+
 					case 5:
 					case "typeof": // return 'typeof'
 						if (val === null) return "null";
+
 						if (val === void 0) return "undefined";
+
 						if (val instanceof Error) return "error";
+
 						try {
 							val.map((v: any) => v);
+
 							return "array";
 						} catch (e) {
 							return typeof val;
@@ -83,7 +93,9 @@ export const handler = {
 					case 6:
 					case "trace":
 						console.trace(`TRACE: ${val}`);
+
 						break;
+
 					case 7:
 					case "passthrough": // short-circuit
 					case "default":
@@ -137,28 +149,36 @@ export const handler = {
 				type = loggerType;
 			}
 			const t = typeof type;
+
 			if ((t === "number" || t === "string") && msg) {
 				switch (type) {
 					case 1:
 					case "none":
 						return;
+
 					case 2:
 					case "string":
 						return msg;
+
 					case 3:
 					case "trace":
 						console.trace(`TRACE: ${msg}`);
+
 						return;
+
 					case 4:
 					case "console":
 						console.error(msg);
+
 						return;
+
 					case 5:
 					case "throw":
 						if (msg instanceof Error) {
 							// if it already is an error no need to throw twice,
 							// but if the message is empty, fill it.
 							msg.message ? void 0 : (msg.message = "No message");
+
 							throw msg;
 						} else {
 							throw new Error(msg || "No result");
@@ -211,6 +231,7 @@ export const handler = {
 	 */
 	jsonPurify({ model, maxLen }: Purifiable = {}) {
 		let parsedObj: any;
+
 		let safeObj: { [key: string]: any } = {};
 		/**
 		 * @param {string}
@@ -221,6 +242,7 @@ export const handler = {
 					return null;
 				} else {
 					parsedObj = JSON.parse(str);
+
 					if (
 						typeof parsedObj !== "object" ||
 						Array.isArray(parsedObj)
