@@ -711,6 +711,7 @@ const hasKeyValue = forage.hasKeyValue;
 const ready = forage.ready;
 
 const defineStore = _defineStore;
+
 export {
 	forage,
 	getItem,
