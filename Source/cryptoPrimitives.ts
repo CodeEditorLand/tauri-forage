@@ -11,23 +11,29 @@ import { MaybeUint8Array } from "./types";
 
 export interface Encryptable {
 	json?: object;
+
 	key?: string;
 }
 
 export interface Decryptable {
 	msg?: string;
+
 	key?: string;
 }
 
 export interface EncryptableBox {
 	json: object;
+
 	key: Uint8Array;
+
 	secretOrSharedKey: Uint8Array;
 }
 
 export interface DecryptableBox {
 	secretOrSharedKey: Uint8Array;
+
 	messageWithNonce: string;
+
 	key: Uint8Array;
 }
 
@@ -103,6 +109,7 @@ const crypto = {
 			if (!key) {
 				throw new Error("[CryptoPrimitive] - missing key");
 			}
+
 			let keyUint8Array;
 
 			try {
@@ -119,7 +126,9 @@ const crypto = {
 			const box = secretbox(messageUint8, nonce, keyUint8Array);
 
 			const fullMessage = new Uint8Array(nonce.length + box.length);
+
 			fullMessage.set(nonce);
+
 			fullMessage.set(box, nonce.length);
 
 			const base64FullMessage = encodeBase64(fullMessage);
@@ -173,6 +182,7 @@ const crypto = {
 			if (!decrypted) {
 				throw new Error("Could not decrypt message");
 			}
+
 			const base64DecryptedMessage = encodeUTF8(decrypted);
 			// this is potentially dangerous, because we are
 			// deflating JSON that might be executable
@@ -230,7 +240,9 @@ const crypto = {
 				: box.after(messageUint8, nonce, secretOrSharedKey);
 
 			const fullMessage = new Uint8Array(nonce.length + encrypted.length);
+
 			fullMessage.set(nonce);
+
 			fullMessage.set(encrypted, nonce.length);
 
 			const base64FullMessage = encodeBase64(fullMessage);

@@ -5,6 +5,7 @@ import { Purifiable } from "./types";
 
 export interface Enbox {
 	key?: string;
+
 	loggerType?: LoggerType;
 
 	returnType?: ReturnerType;

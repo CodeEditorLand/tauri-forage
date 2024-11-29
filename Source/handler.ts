@@ -44,6 +44,7 @@ export const handler = {
 			if (!type) {
 				type = returnerType;
 			}
+
 			const t = typeof type;
 
 			if (t === "number" || t === "string") {
@@ -69,6 +70,7 @@ export const handler = {
 						} else {
 							throw new Error(val || "No result");
 						}
+
 					case 4:
 					case "truthy": // 'truthy': undefined not null
 						return val === null || val === void 0
@@ -90,6 +92,7 @@ export const handler = {
 						} catch (e) {
 							return typeof val;
 						}
+
 					case 6:
 					case "trace":
 						console.trace(`TRACE: ${val}`);
@@ -148,6 +151,7 @@ export const handler = {
 			if (!type) {
 				type = loggerType;
 			}
+
 			const t = typeof type;
 
 			if ((t === "number" || t === "string") && msg) {
@@ -183,6 +187,7 @@ export const handler = {
 						} else {
 							throw new Error(msg || "No result");
 						}
+
 					case 6:
 					default:
 						break;
@@ -257,6 +262,7 @@ export const handler = {
 							}
 						});
 					}
+
 					return safeObj;
 				}
 			} catch (e) {

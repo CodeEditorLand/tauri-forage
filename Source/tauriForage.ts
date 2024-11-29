@@ -16,9 +16,11 @@ export type Store = {};
 
 export interface Item {
 	key?: string;
+
 	logger?: LoggerType;
 
 	returner?: ReturnerType;
+
 	store?: string;
 }
 
@@ -84,6 +86,7 @@ const forage = {
 	getItem({ key, logger, returner, before, store }: BeforeItem = {}) {
 		return async function (curry?: MaybeFunction) {
 			const storage = await _defineStore({ store: store });
+
 			key = before ? await handler.maybeCurry(curry || null)(key) : key;
 
 			return handler.returner(
@@ -123,6 +126,7 @@ const forage = {
 	}: KeyValueItem = {}) {
 		return async function (curry?: MaybeFunction) {
 			const storage = await _defineStore({ store: store });
+
 			value = before
 				? await handler.maybeCurry(curry || null)(value)
 				: value;
@@ -167,6 +171,7 @@ const forage = {
 	}: KeyValueItem = {}) {
 		return async function (curry?: MaybeFunction) {
 			const storage = _defineStore({ store: store });
+
 			value = before
 				? await handler.maybeCurry(curry || null)(value)
 				: value;
@@ -200,6 +205,7 @@ const forage = {
 	key({ index, logger, returner, before, store }: IndexItem = {}) {
 		return async function (curry: MaybeFunction) {
 			const storage = await _defineStore({ store: store });
+
 			index = before
 				? await handler.maybeCurry(curry || null)(index)
 				: index;
@@ -253,6 +259,7 @@ const forage = {
 
 		return async function (curry?: MaybeFunction) {
 			const storage = _defineStore({ store: store });
+
 			value = before
 				? await handler.maybeCurry(curry || null)(value)
 				: value;
@@ -276,6 +283,7 @@ const forage = {
 									/* istanbul ignore next */
 									return handler.logger(err)(logger);
 								}
+
 							case "right":
 								try {
 									val = await storage.setItem(
@@ -288,6 +296,7 @@ const forage = {
 									/* istanbul ignore next */
 									return handler.logger(err)(logger);
 								}
+
 							case "deepRight":
 								try {
 									val = await storage.setItem(
@@ -300,6 +309,7 @@ const forage = {
 									/* istanbul ignore next */
 									return handler.logger(err)(logger);
 								}
+
 							case "with":
 								try {
 									val = await storage.setItem(
@@ -312,6 +322,7 @@ const forage = {
 									/* istanbul ignore next */
 									return handler.logger(err)(logger);
 								}
+
 							case "withKey":
 								try {
 									return storage.setItem(
@@ -322,6 +333,7 @@ const forage = {
 									/* istanbul ignore next */
 									return handler.logger(err)(logger);
 								}
+
 							case "deepWith": // watch out for booleans!
 								try {
 									return storage.setItem(
@@ -332,6 +344,7 @@ const forage = {
 									/* istanbul ignore next */
 									return handler.logger(err)(logger);
 								}
+
 							case "deepWithKey": // this is probably what you want
 							default:
 								try {
@@ -394,6 +407,7 @@ const forage = {
 				} else if (typeof value === typeof []) {
 					value.forEach((v) => delete val[v]);
 				}
+
 				return localForage
 					.setItem(key, val)
 					.then((val: any) => {
@@ -459,6 +473,7 @@ const forage = {
     const future = async function res (curry) {
       return handler.maybeCurry2(curry)(2) // broken state
     }
+
     return future()
   },
   */
@@ -524,7 +539,9 @@ const forage = {
 		returner,
 	}: {
 		key?: string;
+
 		value?: string;
+
 		logger?: LoggerType;
 
 		returner?: ReturnerType;
