@@ -10,7 +10,7 @@
 		"@types/ramda": "0.30.2",
 		"better-docs": "2.7.3",
 		"dom-storage": "2.1.0",
-		"dotenv": "16.4.6",
+		"dotenv": "16.4.7",
 		"jsdoc": "4.0.4",
 		"jsdoc-mermaid": "1.0.0",
 		"lint-staged": "15.2.10",
