@@ -35,7 +35,7 @@
 	},
 	"main": "dist/index.cjs.min.js",
 	"module": "dist/index.esm.js",
-	"name": "@tauri-apps/tauri-forage",
+	"name": "@codeeditorland/tauri-forage",
 	"scripts": {
 		"buildRollup": "rollup -c",
 		"buildWebpack": "webpack --progress",
