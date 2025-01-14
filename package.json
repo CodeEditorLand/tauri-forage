@@ -44,7 +44,7 @@
 		"lint-staged": "15.3.0",
 		"postinstall-postinstall": "2.1.0",
 		"promise": "8.3.0",
-		"ts-loader": "9.5.1",
+		"ts-loader": "9.5.2",
 		"tslib": "2.8.1"
 	}
 }
