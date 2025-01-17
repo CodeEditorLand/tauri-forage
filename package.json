@@ -41,7 +41,7 @@
 		"dotenv": "16.4.7",
 		"jsdoc": "4.0.4",
 		"jsdoc-mermaid": "1.0.0",
-		"lint-staged": "15.3.0",
+		"lint-staged": "15.4.1",
 		"postinstall-postinstall": "2.1.0",
 		"promise": "8.3.0",
 		"ts-loader": "9.5.2",
